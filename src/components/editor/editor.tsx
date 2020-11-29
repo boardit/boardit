@@ -1,7 +1,8 @@
 import React from "react";
 import AceEditor from "react-ace";
-import beautify from "../../lib/beautify/index";
-import save from "../../lib/saver/saver";
+import { Callbacks } from "../../App";
+
+import "./editor.css";
 
 import "ace-builds/src-noconflict/mode-jsx";
 import "ace-builds/src-noconflict/mode-html";
@@ -27,23 +28,22 @@ const themes = [
 
 themes.forEach(theme => require(`ace-builds/src-noconflict/theme-${theme}`));
 
-
-interface EditorState {
+interface EditorProps {
     value: string,
-        theme: string,
+    callbacks: Callbacks
 }
 
-export default class Editor extends React.Component < any, EditorState > {
+interface EditorState {
+    theme: string,
+}
+
+export default class Editor extends React.Component<EditorProps, EditorState> {
     constructor(props: any) {
         super(props);
         this.state = {
-            value: this.props.initial,
             theme: "monokai",
         }
         this.setTheme = this.setTheme.bind(this);
-        this.onChange = this.onChange.bind(this);
-        this.beautify = this.beautify.bind(this);
-        this.save = this.save.bind(this);
     }
 
     setTheme(theme: string) {
@@ -52,63 +52,36 @@ export default class Editor extends React.Component < any, EditorState > {
         });
     }
 
-    beautify() {
-        let text = this.state.value;
-        let beautyText = beautify(text, null, null, null);
-        this.setState({
-            value: beautyText
-        });
-    }
-
-    save() {
-        save("boardit.html", this.state.value);
-    }
-
-    onChange(newValue: string) {
-        this.setState({
-            value: newValue
-        });
-        this.props.callback(newValue);
-    }
-
     render() {
         let commands = [{
-            name: "beautify",
+            name: "format",
             bindKey: {
                 win: "Ctrl-Space",
                 mac: "Command-Space"
             },
-            exec: this.beautify
+            exec: this.props.callbacks.format
         }, {
             name: "save",
             bindKey: {
                 win: "Ctrl-Shift-Space",
                 mac: "Command-Shift-Space"
             },
-            exec: this.save
+            exec: this.props.callbacks.save
         },
         ];
-        return ( <
-            AceEditor placeholder = "source code"
-            mode = "html"
-            theme = {
-                this.state.theme
-            }
-            onChange = {
-                this.onChange
-            }
-            name = "UNIQUE_ID_OF_DIV"
-            editorProps = {
-                {
-                    $blockScrolling: true
-                }
-            }
-            value = {
-                this.state.value
-            }
-            enableBasicAutocompletion enableLiveAutocompletion enableSnippets wrapEnabled commands = {
-                commands
-            }
+        return (
+            <AceEditor 
+                placeholder="source code" 
+                mode="html" 
+                theme = {this.state.theme}
+                onChange={this.props.callbacks.change}
+                name = "editor"
+                editorProps={{$blockScrolling: true}}
+                value={this.props.value}
+                commands = {commands}
+                width="45vw"
+                height="85vh"
+                enableBasicAutocompletion enableLiveAutocompletion enableSnippets wrapEnabled
             />
         );
     }

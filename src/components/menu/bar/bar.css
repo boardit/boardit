@@ -1,0 +1,10 @@
+.menubar {
+    position: fixed;
+    height: 8vh;
+    width: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

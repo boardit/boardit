@@ -4,15 +4,34 @@ import "reveal.js/dist/reveal.css";
 import "reveal.js/dist/theme/black.css";
 
 interface PreviewProps {
+    content: string,
+    versionCallback: any
+}
+
+interface PreviewState {
+    reveal: any,
     content: string
 }
 
-export default class Preview extends React.Component<PreviewProps> {
+export default class Preview extends React.Component<PreviewProps, PreviewState> {
     componentDidMount() {
-        let deck = new Reveal();
-        deck.initialize();
-
+        let reveal = new Reveal();
+        reveal.initialize();
+        this.setState({reveal: reveal, content: this.props.content});
+        this.props.versionCallback(reveal.VERSION);
     }
+
+    componentDidUpdate() {
+        // TODO is there a better way to do this?
+        let content = this.props.content;
+        if (this.state.content !== content) {
+            this.setState({content})
+            this.state.reveal.toggleOverview();
+            this.state.reveal.toggleOverview();
+            //this.state.reveal.sync();
+        }
+    }
+
     render() {
         return (
             <div>
