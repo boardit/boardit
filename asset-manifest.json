@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/boardit/static/css/main.71dc07c8.chunk.css",
+    "main.js": "/boardit/static/js/main.aa8ff03c.chunk.js",
+    "main.js.map": "/boardit/static/js/main.aa8ff03c.chunk.js.map",
+    "runtime-main.js": "/boardit/static/js/runtime-main.86688489.js",
+    "runtime-main.js.map": "/boardit/static/js/runtime-main.86688489.js.map",
+    "static/css/2.129c44da.chunk.css": "/boardit/static/css/2.129c44da.chunk.css",
+    "static/js/2.84b7638a.chunk.js": "/boardit/static/js/2.84b7638a.chunk.js",
+    "static/js/2.84b7638a.chunk.js.map": "/boardit/static/js/2.84b7638a.chunk.js.map",
+    "index.html": "/boardit/index.html",
+    "precache-manifest.a85a55cfe38aaf2f221b544955e54e35.js": "/boardit/precache-manifest.a85a55cfe38aaf2f221b544955e54e35.js",
+    "service-worker.js": "/boardit/service-worker.js",
+    "static/css/2.129c44da.chunk.css.map": "/boardit/static/css/2.129c44da.chunk.css.map",
+    "static/css/main.71dc07c8.chunk.css.map": "/boardit/static/css/main.71dc07c8.chunk.css.map",
+    "static/js/2.84b7638a.chunk.js.LICENSE.txt": "/boardit/static/js/2.84b7638a.chunk.js.LICENSE.txt",
+    "static/media/black.css": "/boardit/static/media/source-sans-pro-semibolditalic.c7e698a4.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.86688489.js",
+    "static/css/2.129c44da.chunk.css",
+    "static/js/2.84b7638a.chunk.js",
+    "static/css/main.71dc07c8.chunk.css",
+    "static/js/main.aa8ff03c.chunk.js"
+  ]
+}
